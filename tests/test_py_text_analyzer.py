@@ -1,21 +1,19 @@
-
 from ..src.py_text_analyzer import PyTextAnalyzer
 
+analyzer = PyTextAnalyzer()
+
 def test_py_text_analyzer_init():
-    analyzer = PyTextAnalyzer("test test test")
-    assert analyzer.tokens() == ['test', 'test', 'test']
+    analyzer.process("test test test")
+    assert analyzer.get_words_list() == ['test', 'test', 'test']
 
 def test_py_text_analyzer_map():
-    analyzer = PyTextAnalyzer("test test test")
-    map = (analyzer.map(lambda element: '/' + element + '/'))
+    map = analyzer.process("test test test").map_words(lambda element: '/' + element + '/').get_words_list()
     assert map == ['/test/', "/test/", "/test/"]
 
 def test_py_text_analyzer_filter():
-    analyzer = PyTextAnalyzer("test tall tisana")
-    filter = (analyzer.filter(lambda element: 'e' in element))
+    filter = analyzer.process("test tall tisana").filter_words(lambda element: 'e' in element).get_words_list()
     assert filter == ['test']
 
 def test_py_text_analyzer_reduce():
-    analyzer = PyTextAnalyzer("test tall tisana")
-    reduce = (analyzer.reduce(lambda acc, element: acc + element + "1" if element == 'tisana' else acc))
+    reduce = analyzer.process("test tall tisana").reduce_words(lambda acc, element: acc + element + "1" if element == 'tisana' else acc).get()
     assert reduce == "tisana1"
