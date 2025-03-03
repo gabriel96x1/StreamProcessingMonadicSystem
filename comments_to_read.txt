@@ -1,0 +1,76 @@
+Jstudio is actually on the app store and gets updated so it's better in every way
+You shouldn't have to debug this :)
+
+If you are able to create an issue at [https://issuetracker.google.com/issues/new?component=192708&template=840533](https://issuetracker.google.com/issues/new?component=192708&template=840533), we can follow up on how best to debug this!
+I've loaded the heap dump into VisualVm, but it's all Greek to me
+I think this confirms that your max heap is set to 2g. It is worth filing a bug on the issue tracker - this looks like we may be perhaps leaking off heap memory. Please post a link to the issue you file and we can get it prioritized, thank you!
+Yo op it's been a couple years I'm currently wondering what the hells wrong with Google play it's has mostly one star reviews and I just replaced mine with one star it's completely broken this last year for everyone and becoming a one star app even though it's so important which is crazy considering it's importance RN so many issues just check the reviews for this year
+I have taken many Compose tutorials over the years (for fun) and when I stumble upon the use of Constraint layout in Compose it has never felt necessary to me. It is usually used by an instructor who is not completely comfortable with nesting Rows and Columns, alignments, and arrangements. But, like others mentioned, there are limited cases where Constraints would be a better solution.
+Yes, it should be the max VM memory. The best way to confirm this is by opening a terminal, and running the command:
+
+```
+jcmd <pid> VM.flags
+```
+
+Replace `<pid>` with the process id of your running Android Studio instance. This should emit all the flags. The specific one to look for is `-XX:MaxHeapSize=2147483648`. That number indicates the max configured size.
+
+From your remarks above, it looks like the primary use case here is Jetpack  Compose previews? Perhaps there's a memory leak there, but if this is a new Android Studio version, then filing a bug for this should receive immediate attention.
+Yes, my studio.vmoptions specifies -Xmx2048m. Yet in Activity monitor on my Mac it's clearly above that
+My memory consumption keeps growing and growing, from 5gb up to 15gb on a 16 gb machine. I don't use an emulator, just the compose preview. Just by building and navigating withing the UI, I get these numbers. Both the VM and Gradle memory are set to 2g, but I'm not sure the prefix is Xmx
+Do you mean the VM settings?
+I feel this in my soul. My first few releases were an endless checklist of everything except coding, store descriptions, privacy policies, screenshots, dealing with random rejections, all that. I genuinely thought I’d just ship the app and go celebrate. Ha!
+
+Marketing’s the big one I underestimated: no one really warns you how much hustle you need just to get a handful of users. Even if the code is rock-solid, you’re suddenly juggling app store optimization, screenshot design, a website, maybe social posts, it’s practically a second job.
+
+But honestly, that first launch is the worst part. Once you figure out how to prep store listings and pass review, it gets easier. I keep a checklist to avoid missing the basics (like double-checking I don’t have “beta” in the description or forgetting a working privacy policy link). I’ve also spent time on different tools to automate chunks of the process - hugely helps on subsequent releases.
+Please review restrictions on background location access.
+
+Please use a search engine and search the subreddit before posting, and make an effort to try recommended solutions. When posting, indicate what you have researched, what you have tried, and summarize your current understanding.
+Same here .. I thought it was straightforward!
+Check on the Knox sdk side, Samsung loves “protecting” their users even if it’s a pain in the ass for the devs
+It is not.
+
+They are still developing it. They just prioritized in a smarter way their efforts
+The announcement happened a couple days ago. [Here is the blog post.](https://blog.jetbrains.com/kotlin/2025/02/kotlin-multiplatform-tooling-shifting-gears/)
+Studio will not use more RAM than how much you give it (via the \`-Xmx\` setting). But if you specify \`-Xmx16g\`, then it is valid for the JVM to use 16g. So the recommended steps would be:
+
+1. Verify your max heap size. 
+
+2. If you are giving at 16g, and your project is fairly small, then reduce it to 5g or 8g.
+
+3. If you are finding performance issues with the lower heap size, then provide a few thread dumps (https://developer.android.com/studio/report-bugs#thread-dump).
+
+4. An alternative would be to provide a heap dump (https://stackoverflow.com/a/3042463/29377875), but be aware that this includes everything loaded into the JVM, which might include various strings from editors/files in your project, paths, etc. But it also gives a clear look into what is consuming memory.
+If emulators are the issue. Id use something other than AS. I've used Genymotion as an alternative. But physical devices work way better and faster.
+Compose definitely uses a lot more system resources. I've done Android development on some of my older computers over the years, and only now switching to Compose has it really become rough. 16 GB of RAM has been the standard for several years, but it's got very little breathing room these days.
+Ide is consuming 15 gb, not the emulators. They are extra
+Emulator memory is preallocated, emulators don't consume more RAM when running compose, you are prolly using a different emulator with more ram allocated to it.  
+For the ide part: layoutLib consume close to nothing, if you see a sizeable difference you should align your jdk and java home, your are prolly running multiple java daemon needlessly
+Thanks, let me try that.
+I am trying to route all traffic from hotstar app to a secondary network in my router!
+
+Now explain why is this inadvisable or questionably legal as you say?
+
+I hope you misunderstood my original intent or i was not clear enough with my question. 
+
+If not, what you did was poor moderation.
+I'm using a 16gb Chromebook and it seems to work ok
+I run on 16 gb mac. It uses swap. My android studio settings are default. The project is medium sized. Yet I get 15 gb of RAM usage from AS
+32 GB of ram?
+This is a community for Android Development.
+
+Your post should be asked in an Android User community.
+
+Consider posting on /r/Android for device reviews, guides, discussions and rumors.
+
+If it doesn't fit in those categories you might want to have a look at /r/AndroidQuestions, /r/PickAnAndroidForMe or /r/AndroidApps depending on what kind of information you are looking for
+[https://blog.jetbrains.com/kotlin/2025/02/kotlin-multiplatform-tooling-shifting-gears/](https://blog.jetbrains.com/kotlin/2025/02/kotlin-multiplatform-tooling-shifting-gears/)
+
+[https://news.ycombinator.com/item?id=43015387](https://news.ycombinator.com/item?id=43015387)
+Please note that we also have a very active Discord server where you can interact directly with other community members!
+
+[Join us on Discord](https://discordapp.com/invite/D2cNrqX)
+
+
+*I am a bot, and this action was performed automatically. Please [contact the moderators of this subreddit](/message/compose/?to=/r/androiddev) if you have any questions or concerns.*
+Thanks for the reply, do you know when this happened? I've seen somewhere that they recommended it as a good option
